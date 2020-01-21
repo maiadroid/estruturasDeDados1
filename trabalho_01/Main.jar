@@ -5,24 +5,36 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		
-		Scanner input = new Scanner (System.in);
-		
-		System.out.println("Insira itens para a lista. Insira -1 quando quiser parar.");
+
+		LSEO<T> lista = new LSEO<>();
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Insira itens para a lista. Insira nada e aperte enter quando quiser parar.");
+
 		do {
-			
-			
-		} while (input.next()!="-1");
-				
+			lista.inserirFim(input.next());
+
+		} while (!input.equals(null));
+
 		System.out.println("Você deseja que a sua lista seja ordenada crescente (digite 1) ou decrescente (digite 2)?");
-		if (input.next()=="1") {
-			
-		}
-		else {
-			if (input.next()=="2") {
-				
+
+		if (input.next() == "1") {
+			lista.ordernarCrescente();
+		} else {
+			if (input.next() == "2") {
+				lista.ordenarDecrescente();
 			}
-			System.out.println("Digite um número de ordenação válido.");
-		}		
+
+			if (input.next() != "1") {
+				if (input.next() != "2") {
+					System.out.println("Digite um número para ordenação válido.");
+				}
+			}
+
+			for (int i = 0; i < lista.quantidade(); i++) {
+				System.out.println(lista.getItem(i));
+			}
+
+		}
 	}
 }
